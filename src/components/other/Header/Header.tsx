@@ -89,7 +89,7 @@ const Header: React.FunctionComponent<IHeaderProps> = ({ user, ...props }) => {
                         ))
                     }
                 </ul>
-                {user.type !== userType.GUEST ? <button onClick={handleButtonExit()}>Выход</button> : null}
+                {!(+user.type === userType.GUEST) && <button onClick={handleButtonExit()}>Выход</button> }
             </nav>
         </header>
     );
