@@ -25,26 +25,25 @@ const Header: React.FunctionComponent<IHeaderProps> = ({ user, ...props }) => {
     )
 
     const selectNavList = () => {
-        console.log('11111111');
-        console.log(user.type);
-        if (user.type === userType.GUEST) 
-        { return [
-                    {
-                        title: 'Главная',
-                        link: '/',
-                    },
-                    {
-                        title: 'Авторизация',
-                        link: '/login',
-                    },
-                    {
-                        title: 'Новости',
-                        link: '/news',
-                    },
-        ]};
 
-        if (user.type === userType.USER) 
-        { return [
+        switch (+user.type) { 
+            case userType.ADMIN:
+            return [
+                {
+                    title: 'Главная',
+                    link: '/',
+                },
+                {
+                    title: 'Новости',
+                    link: '/news',
+                },
+                {
+                    title: 'Профиль',
+                    link: '/profile',
+                },
+            ];
+        case userType.USER:
+            return [
                     {
                         title: 'Главная',
                         link: '/',
@@ -57,24 +56,22 @@ const Header: React.FunctionComponent<IHeaderProps> = ({ user, ...props }) => {
                         title: 'Профиль',
                         link: '/profile',
                     },
-        ]};
-    
-        if (user.type === userType.ADMIN) 
-        { return [
-                    {
-                        title: 'Главная',
-                        link: '/',
-                    },
-                    {
-                        title: 'Новости',
-                        link: '/news',
-                    },
-                    {
-                        title: 'Профиль',
-                        link: '/profile',
-                    },
-        ]};
-        return;
+                ];
+        }
+        return [
+            {
+                title: 'Главная',
+                link: '/',
+            },
+            {
+                title: 'Авторизация',
+                link: '/login',
+            },
+            {
+                title: 'Новости',
+                link: '/news',
+            },
+        ];
     }
     
     const navList = selectNavList();
