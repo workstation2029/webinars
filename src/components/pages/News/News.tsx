@@ -1,56 +1,44 @@
 import * as React from 'react';
 import './News.scss';
+import { AppState } from 'src/store';
+import { Dispatch } from 'redux';
+import { newsRequest } from 'src/store/news/action'
+import { connect } from 'react-redux';
+import { INews } from 'src/store/news/types';
 
 interface INewsProps {
+    news: INews[],
+    newsRequest: () => void;
 }
 
-const News: React.FunctionComponent<INewsProps> = (props) => {
-    const news = [
-        {
-            title: 'Новость 1',
-            text: 'Привет мир'
-        },
-        {
-            title: 'Новость 2',
-            text: 'Привет мир'
-        },
-        {
-            title: 'Новость 3',
-            text: 'Привет мир'
-        },
-        {
-            title: 'Новость 4',
-            text: 'Привет мир'
-        },
-        {
-            title: 'Новость 5',
-            text: 'Привет мир'
-        },
-        {
-            title: 'Новость 6',
-            text: 'Привет мир'
-        },
-        {
-            title: 'Новость 7',
-            text: 'Привет мир'
-        },
-        {
-            title: 'Новость 8',
-            text: 'Привет мир'
-        },
-    ]
-    return (
-        <section className="news">
-            <ul className="news__list">
-                {news.map( ({title, text}, i) =>
-                    (<li className="news__item" key={i}>
-                        <h3 className="news__title">{title}</h3>
-                        <p className="news__text">{text}</p>
-                    </li>)
-                )}
-            </ul>
-        </section>
-    );
+class News extends React.Component<INewsProps, {}> {
+    public componentDidMount() {
+        this.props.newsRequest();
+    }
+
+    public render() {
+        const news = this.props.news;
+        return (
+            <section className="news">
+                <ul className="news__list">
+                    {news!.map( (item, i) =>
+                        (<li className="news__item" key={i}>
+                            <h3 className="news__title">{item.title}</h3>
+                            <p className="news__text">{item.description}</p>
+                        </li>)
+                    )}
+                </ul>
+            </section>
+        );
+    }
 };
 
-export default News;
+const mapStateToProps = (state: AppState) => ({
+    news: state.news,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    newsRequest: () => { dispatch(newsRequest()) }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(News);
