@@ -7,12 +7,10 @@ import Profile from 'src/components/pages/Profile/Profile';
 import { connect } from 'react-redux';
 import { AppState } from 'src/store';
 import userType from 'src/model/userType';
+import { IUserType } from 'src/store/user/types';
 
 interface IRootProps {
-    user: {
-        login: string,
-        type: userType;
-    }
+    user: IUserType;
 }
 
 class Root extends React.Component<IRootProps, {}> {

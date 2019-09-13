@@ -3,13 +3,10 @@ import './Login.scss';
 import { connect } from 'react-redux';
 import { authorization } from 'src/store/user/action';
 import { Dispatch } from 'redux';
-import { UserActionsType } from 'src/store/user/types';
+import { UserActionsType, IUserType } from 'src/store/user/types';
 
 interface ILoginProps {
-    user: {
-        login: string,
-        type: string
-    };
+    user: IUserType;
     handleClick: any;
 }
 interface IFormItem {

@@ -1,10 +1,10 @@
-import { UserActionsType, AUTHORIZATION, EXIT } from "./types"
+import { UserActionsType, AUTHORIZATION, EXIT, IUserType } from "./types"
 import userType from "src/model/userType"
 
-const initState = () => (
+const initState = (): IUserType => (
     {
         login: localStorage.getItem('login') || '',
-        type: localStorage.getItem('type') || userType.GUEST
+        type: Number(localStorage.getItem('type')) || userType.GUEST
     }
 );
 

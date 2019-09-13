@@ -6,12 +6,10 @@ import userType from 'src/model/userType';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { exit } from 'src/store/user/action';
+import { IUserType } from 'src/store/user/types';
 
 interface IHeaderProps {
-    user: {
-        login: string;
-        type: userType
-    },
+    user: IUserType,
     handleButtonExit: () => void;
 }
 
@@ -26,7 +24,7 @@ const Header: React.FunctionComponent<IHeaderProps> = ({ user, ...props }) => {
 
     const selectNavList = () => {
 
-        switch (+user.type) { 
+        switch (user.type) { 
             case userType.ADMIN:
             return [
                 {
