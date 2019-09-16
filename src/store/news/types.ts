@@ -1,4 +1,5 @@
 export const NEWS_REQUEST = "news.NEWS_REQUEST";
+export const NEWS_RECEIVE = "news.NEWS_RECEIVE";
 
 export interface INews {
     source: {
@@ -18,4 +19,9 @@ export interface INewsRequestAction {
     type: typeof NEWS_REQUEST;
 }
 
-export type newsActionsType = INewsRequestAction;
+export interface INewsReceiveAction {
+    type: typeof NEWS_RECEIVE;
+    list: INews[];
+}
+
+export type newsActionsType = INewsRequestAction | INewsReceiveAction;

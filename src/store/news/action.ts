@@ -1,4 +1,4 @@
-import { NEWS_REQUEST, newsActionsType } from "./types";
+import { NEWS_REQUEST, newsActionsType, INews, NEWS_RECEIVE } from "./types";
 
 export const newsRequest = (): newsActionsType => (
     {
@@ -6,8 +6,15 @@ export const newsRequest = (): newsActionsType => (
     }
 );
 
-export const newsReceive = (): newsActionsType => (
-    {
-        type: NEWS_RECEIVE 
-    }
-);
+export const newsReceive = (list: INews[]): newsActionsType => {
+    return ({
+        type: NEWS_RECEIVE,
+        list
+    })
+};
+
+// export const newsReceive = (): newsActionsType => (
+//     {
+//         type: NEWS_RECEIVE 
+//     }
+// );

@@ -1,3 +1,5 @@
+import { store } from "src/store";
+import { newsReceive } from "src/store/news/action";
 
 
 class NewsApi {
@@ -13,7 +15,9 @@ class NewsApi {
 
         return fetch(req, { headers: NewsApi.headers })
         .then((response) => ( response.json() ))
-        .then( res => res.articles )
+        .then( res => {
+            store.dispatch(newsReceive(res.articles))
+        } )
         .catch( err => console.log(err) );
     }
 };

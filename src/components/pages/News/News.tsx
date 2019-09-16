@@ -7,7 +7,11 @@ import { connect } from 'react-redux';
 import { INews } from 'src/store/news/types';
 
 interface INewsProps {
-    news: INews[],
+    news: {
+        list: INews[];
+        isFetching: boolean
+    },
+    isFetching: boolean;
     newsRequest: () => void;
 }
 
@@ -21,7 +25,7 @@ class News extends React.Component<INewsProps, {}> {
         return (
             <section className="news">
                 <ul className="news__list">
-                    {news!.map( (item, i) =>
+                    {news.list && news.list!.map( (item, i) =>
                         (<li className="news__item" key={i}>
                             <h3 className="news__title">{item.title}</h3>
                             <p className="news__text">{item.description}</p>
