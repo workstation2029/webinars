@@ -1,4 +1,6 @@
 import { NEWS_REQUEST, newsActionsType, INews, NEWS_RECEIVE } from "./types";
+import NewsApi from "src/services/newsApi/newsApi";
+import { Dispatch } from "redux";
 
 export const newsRequest = (): newsActionsType => (
     {
@@ -13,8 +15,12 @@ export const newsReceive = (list: INews[]): newsActionsType => {
     })
 };
 
-// export const newsReceive = (): newsActionsType => (
-//     {
-//         type: NEWS_RECEIVE 
-//     }
-// );
+export const newsFetch = () => (
+
+    (dispatch: Dispatch) => {
+
+        dispatch(newsRequest());
+
+        NewsApi.lastBBCNews();
+    }
+)

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import './News.scss';
 import { AppState } from 'src/store';
-import { Dispatch } from 'redux';
-import { newsRequest } from 'src/store/news/action'
+import { newsFetch } from 'src/store/news/action'
 import { connect } from 'react-redux';
 import { INews } from 'src/store/news/types';
 
@@ -12,12 +11,12 @@ interface INewsProps {
         isFetching: boolean
     },
     isFetching: boolean;
-    newsRequest: () => void;
+    newsFetch: () => void;
 }
 
 class News extends React.Component<INewsProps, {}> {
     public componentDidMount() {
-        this.props.newsRequest();
+        this.props.newsFetch();
     }
 
     public render() {
@@ -25,7 +24,7 @@ class News extends React.Component<INewsProps, {}> {
         return (
             <section className="news">
                 <ul className="news__list">
-                    {news.list && news.list!.map( (item, i) =>
+                    {news.list.map( (item, i) =>
                         (<li className="news__item" key={i}>
                             <h3 className="news__title">{item.title}</h3>
                             <p className="news__text">{item.description}</p>
@@ -41,8 +40,9 @@ const mapStateToProps = (state: AppState) => ({
     news: state.news,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    newsRequest: () => { dispatch(newsRequest()) }
+// tslint:disable-next-line: ban-types
+const mapDispatchToProps = (dispatch: Function) => ({
+    newsFetch: () => { dispatch(newsFetch()) }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(News);
