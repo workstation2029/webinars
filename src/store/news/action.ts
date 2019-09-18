@@ -1,6 +1,7 @@
 import { NEWS_REQUEST, newsActionsType, INews, NEWS_RECEIVE } from "./types";
 import NewsApi from "src/services/newsApi/newsApi";
 import { Dispatch } from "redux";
+import { store } from "..";
 
 export const newsRequest = (): newsActionsType => (
     {
@@ -19,8 +20,10 @@ export const newsFetch = () => (
 
     (dispatch: Dispatch) => {
 
-        dispatch(newsRequest());
-
-        NewsApi.lastBBCNews();
+        if (store.getState().news.list.length === 0) {
+            dispatch(newsRequest());
+            NewsApi.lastBBCNews();
+        }
+        
     }
 )

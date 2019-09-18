@@ -18,6 +18,7 @@ export const userReducer = (state = initState(), action: UserActionsType)=> {
                         localStorage.setItem('type', `${userType.USER}`)
                         localStorage.setItem('login', `${login}`)
                         return {
+                            ...state,
                             type: userType.USER,
                             login
                         }
@@ -27,6 +28,7 @@ export const userReducer = (state = initState(), action: UserActionsType)=> {
                         localStorage.setItem('type', `${userType.ADMIN}`)
                         localStorage.setItem('login', `${login}`)
                         return {
+                            ...state,
                             type: userType.ADMIN,
                             login
                         }
@@ -38,6 +40,7 @@ export const userReducer = (state = initState(), action: UserActionsType)=> {
                 localStorage.setItem('type', `${userType.GUEST}`);
                 localStorage.setItem('login', ``)
                 return {
+                    ...state,
                     type: userType.GUEST,
                     login: ''
                 }

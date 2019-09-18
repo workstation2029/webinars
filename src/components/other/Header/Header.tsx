@@ -65,10 +65,6 @@ const Header: React.FunctionComponent<IHeaderProps> = ({ user, ...props }) => {
                 title: 'Авторизация',
                 link: '/login',
             },
-            {
-                title: 'Новости',
-                link: '/news',
-            },
         ];
     }
     

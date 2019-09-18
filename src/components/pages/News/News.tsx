@@ -4,6 +4,7 @@ import { AppState } from 'src/store';
 import { newsFetch } from 'src/store/news/action'
 import { connect } from 'react-redux';
 import { INews } from 'src/store/news/types';
+import { NavLink as Link } from 'react-router-dom';
 
 interface INewsProps {
     news: {
@@ -25,10 +26,12 @@ class News extends React.Component<INewsProps, {}> {
             <section className="news">
                 <ul className="news__list">
                     {news.list.map( (item, i) =>
-                        (<li className="news__item" key={i}>
-                            <h3 className="news__title">{item.title}</h3>
-                            <p className="news__text">{item.description}</p>
-                        </li>)
+                        (<Link to={`/news/${i}`} key={i}>
+                            <li className="news__item">
+                                <h3 className="news__title">{item.title}</h3>
+                                <p className="news__text">{item.description}</p>
+                            </li>
+                        </Link>)
                     )}
                 </ul>
             </section>
