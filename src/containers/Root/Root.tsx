@@ -41,22 +41,21 @@ class Root extends React.Component<IRootProps, {}> {
         switch(type) {
             case userType.GUEST:
                 return [
-                    redirectList.guest.map( item => addRedirect(item)),
-                    routeList.guest.map( item => addRoute(item)),
+                    redirectList[type].map( item => addRedirect(item)),
+                    routeList[type].map( item => addRoute(item)),
                 ]
             case userType.USER: 
             return [
-                redirectList.user.map( item => addRedirect(item)),
-                routeList.user.map( item => addRoute(item)),
+                redirectList[type].map( item => addRedirect(item)),
+                routeList[type].map( item => addRoute(item)),
             ]
             case userType.ADMIN:
             return [
-                redirectList.admin.map( item => addRedirect(item)),
-                routeList.admin.map( item => addRoute(item)),
+                redirectList[type].map( item => addRedirect(item)),
+                routeList[type].map( item => addRoute(item)),
             ]
         }
     }
-
 
     private addRoute(item: any) {
         const { path, component } = item;

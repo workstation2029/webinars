@@ -2,9 +2,12 @@ import News from "src/components/pages/News/News"
 import NewsItem from "src/components/pages/NewsItem/NewsItem"
 import Profile from "src/components/pages/Profile/Profile"
 import Login from "src/components/pages/Login/Login"
+import userType from "src/model/userType"
+
+const { GUEST, USER, ADMIN } = userType;
 
 export const routeList = {
-    admin: [
+    [ADMIN]: [
         {
             path: '/news',
             component: News,
@@ -18,7 +21,7 @@ export const routeList = {
             component: Profile,
         }
     ],
-    user: [
+    [USER]: [
         {
             path: '/news',
             component: News,
@@ -32,7 +35,7 @@ export const routeList = {
             component: Profile,
         }
     ],
-    guest: [
+    [GUEST]: [
         {
             path: '/login',
             component: Login,
@@ -41,7 +44,7 @@ export const routeList = {
 }
 
 export const redirectList = {
-    admin: [
+    [ADMIN]: [
         {
             from: '/login',
             to: '/',
@@ -51,7 +54,7 @@ export const redirectList = {
             to: '/news',
         },
     ],
-    user: [
+    [USER]: [
         {
             from: '/login',
             to: '/',
@@ -61,7 +64,7 @@ export const redirectList = {
             to: '/news',
         },
     ],
-    guest: [
+    [GUEST]: [
         {
             from: '/',
             to: '/login',
